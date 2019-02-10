@@ -32,4 +32,16 @@ QUnit.module('Тестируем функцию minmax', function () {
 	QUnit.test('minmax игнорирует обычный текст', function (assert) {
 		assert.deepEqual(minmax('1, -5.8 или 10, хотя 34 + -5.3 и 73'), [ -5.8, 73 ]);
 	});
+
+	QUnit.test('minmax правильно парсит слова с числами', function (assert) {
+		assert.deepEqual(minmax('1, -5.8aa или 10, хотя 34 + -5.3 и 73bb'), [ -5.8, 73 ]);
+	});
+
+	QUnit.test('minmax правильно парсит сплошную строку', function (assert) {
+		assert.deepEqual(minmax('яконечно7.8дикоизвиняюсь'), [ 7.8, 7.8 ]);
+	});
+
+	QUnit.test('minmax правильно парсит числа с символами между цифр числа', function (assert) {
+		assert.deepEqual(minmax('1.нокак2 ваше8дз8 вплане-1тестов4?ммм?непонял'), [ -14, 88 ]);
+	});
 });
