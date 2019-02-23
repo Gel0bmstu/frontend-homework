@@ -3,7 +3,7 @@
 let minmax = (input_str) => {
 
 	// Валидация входных дынных (если не строка -> null)
-	if ( typeof(input_str) !== "string") {
+	if (typeof(input_str) !== "string") {
 		return null;
 	}	
 
@@ -13,13 +13,13 @@ let minmax = (input_str) => {
 
 	// Пушим в конец инициализированного массива числа != NaN
 	splited_str.forEach((item, i, splited_str) => {
-		if ( isNaN( parseFloat(item) ) ) {				 // Если элемент массива NaN
+		if (isNaN(parseFloat(item))) {				 // Если элемент массива NaN
 			item = item.replace(/[^\d|/.|/-]/g, ""); 	 // Убираем из него все символы, отличные от чисел, с помощью регулярного выражения (божьей)
 			if (item.length !== 0) {
-				parsed_arr.push( parseFloat(item) );	 // Если длина получившегося выражения != 0, пушим его в массив чисел 
+				parsed_arr.push(parseFloat(item));	 // Если длина получившегося выражения != 0, пушим его в массив чисел 
 			}
 		} else {
-		 parsed_arr.push( parseFloat(item) );			
+		 parsed_arr.push(parseFloat(item));			
 		}
 	})
 
