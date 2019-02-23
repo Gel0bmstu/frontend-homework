@@ -50,6 +50,7 @@ QUnit.module('Тестируем функцию minmax', function () {
 	});
 
 	QUnit.test('minmax правильно обрабатывает различные типы входных данных', function (assert) {
+		assert.deepEqual(minmax(  ), null, 'nothing');
 		assert.deepEqual(minmax( null ), null, 'null');
 		assert.deepEqual(minmax( undefined ), null, 'undefined');
 		assert.deepEqual(minmax( true ), null, 'boolean');
