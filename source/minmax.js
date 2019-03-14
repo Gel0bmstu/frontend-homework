@@ -1,37 +1,41 @@
 'use strict';
 
-let minmax = (input_str) => {
+let minMax = (inputStr) => {
 
 	// Валидация входных дынных (если не строка -> null)
-	if (typeof(input_str) !== "string") {
+	if (typeof inputStr !== "string") {
 		return null;
 	}	
-
+``
 	// Сплитим входную строку по пробелу
-	let splited_str = input_str.split(" "); 
-	let parsed_arr = [];
+	const splitedStr = inputStr.split(" "); 
 
-	// Пушим в конец инициализированного массива числа != NaN
-	splited_str.forEach((item, i, splited_str) => {
-		if (isNaN(parseFloat(item))) {				 // Если элемент массива NaN
-			item = item.replace(/[^\d|/.|/-]/g, ""); 	 // Убираем из него все символы, отличные от чисел, с помощью регулярного выражения (божьей)
-			if (item.length !== 0) {
-				parsed_arr.push(parseFloat(item));	 // Если длина получившегося выражения != 0, пушим его в массив чисел 
+	let parsedArr = splitedStr.reduce( (result, current) => {
+		// Если элемент массива NaN
+		if (Number.isNaN(parseFloat(current))) {
+			 // Убираем из него все символы, отличные от чисел, с помощью регулярного выражения (божьей)
+			current = current.replace(/[^-.\d]/g, ""); 	 	
+			if (current.length !== 0 && !Number.isNaN(parseFloat(current))) {	
+				result.push(parseFloat(current))
+				return result;		 
+			} else {
+				return result;
 			}
 		} else {
-		 parsed_arr.push(parseFloat(item));			
+			result.push(parseFloat(current));
+			return result;			
 		}
-	})
+	}, []);
 
-	// Иницилизируем min и max перемнные	
+	// Объявляем min и max перемнные	
 	let min, max;	
 
 	// Если массив не пустой -> ищем min & max элементы
-	if (parsed_arr.length !== 0) {
-		max = Math.max(...parsed_arr);
-		min = Math.min(...parsed_arr);
+	if (parsedArr.length !== 0) {
+		max = Math.max(...parsedArr);
+		min = Math.min(...parsedArr);
 	}
 
 	// Возвращаем min max
-	return [min,max];
+	return [min, max];
 }
