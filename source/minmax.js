@@ -1,16 +1,15 @@
 'use strict';
 
-let minMax = (inputStr) => {
-
+let minmax = (inputStr) => {
 	// Валидация входных дынных (если не строка -> null)
 	if (typeof inputStr !== "string") {
 		return null;
 	}	
-``
+
 	// Сплитим входную строку по пробелу
 	const splitedStr = inputStr.split(" "); 
 
-	let parsedArr = splitedStr.reduce( (result, current) => {
+	let parsedArr = splitedStr.reduce((result, current) => {
 		// Если элемент массива NaN
 		if (Number.isNaN(parseFloat(current))) {
 			 // Убираем из него все символы, отличные от чисел, с помощью регулярного выражения (божьей)
@@ -18,13 +17,11 @@ let minMax = (inputStr) => {
 			if (current.length !== 0) {	
 				result.push(parseFloat(current))
 				return result;		 
-			} else {
-				return result;
-			}
-		} else {
-			result.push(parseFloat(current));
-			return result;			
+			} 
+			return result;
 		}
+		result.push(parseFloat(current));
+		return result;			
 	}, []);
 
 	// Объявляем min и max перемнные	
