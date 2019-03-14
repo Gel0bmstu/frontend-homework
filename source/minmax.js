@@ -1,6 +1,6 @@
 'use strict';
 
-let minmax = (inputStr) => {
+let minMax = (inputStr) => {
 	// Валидация входных дынных (если не строка -> null)
 	if (typeof inputStr !== "string") {
 		return null;
@@ -14,11 +14,9 @@ let minmax = (inputStr) => {
 		if (Number.isNaN(parseFloat(current))) {
 			 // Убираем из него все символы, отличные от чисел, с помощью регулярного выражения (божьей)
 			current = current.replace(/[^-.\d]/g, ""); 	 	
-			if (current.length !== 0) {	
-				result.push(parseFloat(current))
+			if (current.length === 0) {	
 				return result;		 
-			} 
-			return result;
+			}
 		}
 		result.push(parseFloat(current));
 		return result;			
